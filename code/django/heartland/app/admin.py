@@ -9,12 +9,12 @@ from . import models
 class MetricInline(admin.TabularInline):
 	model = models.Metric
 
-class CategoryAdmin(admin.ModelAdmin):
-	inlines = [
+	class CategoryAdmin(admin.ModelAdmin):
+		inlines = [
 		MetricInline
-	]
+		]
 
-admin.site.register(models.Category, CategoryAdmin)
-admin.site.register(models.Game)
-admin.site.register(models.Score)
+		admin.site.register(models.Category, CategoryAdmin)
+		admin.site.register(models.Game)
+		admin.site.register(models.Score)
 
