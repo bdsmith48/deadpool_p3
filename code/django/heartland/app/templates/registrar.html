@@ -15,31 +15,31 @@
       {{ form.as_p }}
       <input type="submit" value="Submit" />
   </form> -->
-<div class="container">
-    <div class="row">
-		<div class="span12">
-			<form class="form-horizontal" action='' method="POST">
-				{%csrf_token%}
-			  <fieldset>
-			    <div id="legend">
-			      <legend class="">Game Registration</legend>
-			    </div>
-			    <div class="control-group">
-			      <div class="controls">
-			        {{form.as_p}}
-			      </div>
-			    </div>
-			    <div class="control-group">
-			      <div class="controls">
-			        <button class="btn btn-success">Login</button>
-			      </div>
-			    </div>
-			  </fieldset>
-			</form>
-		</div>
-	</div>
-</div>
+  <div class="container">
+  	<div class="row">
+  		<div class="span12">
+  			<form class="form-horizontal" action='' method="POST">
+  				{%csrf_token%}
+  				<fieldset>
+  					<div id="legend">
+  						<legend class="">Game Registration</legend>
+  					</div>
+  					<div class="control-group">
+  						<div class="controls">
+  							{{form.as_p}}
+  						</div>
+  					</div>
+  					<div class="control-group">
+  						<div class="controls">
+  							<button class="btn btn-success">Login</button>
+  						</div>
+  					</div>
+  				</fieldset>
+  			</form>
+  		</div>
+  	</div>
+  </div>
 
 
 
-{% endblock %}
+  {% endblock %}
