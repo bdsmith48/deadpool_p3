@@ -9,18 +9,51 @@
 
 {% block content %}
 
-  <h2>{{game.name}}</h2>
-  <hr />
+<!--   <h2>{{game.name}}</h2>
+  <hr /> -->
   <form id="scoring" method="post" action="/store_score/">
   	  {% csrf_token %}
-	{% for form in forms %}
-		{{form.data.metric.name}} - {{form.value}}
+		<!-- {{form.data.metric.name}} - {{form.value}}
 		<p hidden>{{form.metric}} {{form.game}} {{form.judge}}</p>
-		<br>
-	{% endfor %}
+		<br> -->
+
+		<div class="container">
+		    <div class="row">
+				<div class="span12">
+					<form class="form-horizontal" action='' method="POST">
+					  <fieldset>
+					    <div id="legend">
+					      <legend class="">Game Registration</legend>
+					    </div>
+					    	  {% for form in forms %}
+
+					    <div class="control-group">
+					      <div class="controls">
+					        {{form.data.metric.name}} - {{form.value}}
+					        <br><br>
+					      </div>
+					    </div>
+					    <p hidden>{{form.metric}} {{form.game}} {{form.judge}}</p>
+	 					{% endfor %}
+
+					    <div class="control-group">
+					      <div class="controls">
+					        <button class="btn btn-success">Login</button>
+					      </div>
+					    </div>
+					  </fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
 	<br>
-	<hr />
-	<input type="submit" value="Submit Score" />
+	<!-- <input type="submit" value="Submit Score" /> -->
   </form>
 
 {% endblock %}
+
