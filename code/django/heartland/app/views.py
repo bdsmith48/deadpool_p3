@@ -105,7 +105,7 @@ def store_score(request):
 			Score.objects.filter(judge=judge, game=game, metric=metric).delete()
 			score.save()
 
-		return TemplateResponse(request, 'store_score.html')
+		return TemplateResponse(request, 'store_score.html', {'game': game})
 
 	else:
 		return HttpResponse("Please use a post request")

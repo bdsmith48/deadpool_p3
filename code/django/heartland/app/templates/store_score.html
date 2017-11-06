@@ -9,7 +9,23 @@
 
 {% block content %}
 
-  <h2>Scored!</h2>
-  <a href="/judging/">Continue</a>
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<fieldset>
+				<div id="legend">
+					<legend class=""><h2>You scored {{game.name}}!</h2></legend>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a href="/judging/"" class="btn btn-success" role="button">Continue</a>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+</div>
+
 
 {% endblock %}
