@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Judging{% endblock %}
+
+{% block style %}
+
+
+{% endblock %}
+
+{% block content %}
+
+  <h2>Judging</h2>
+  <hr />
+  {% for game in games_list %}
+	  <h3>
+	      {% if game.id in games_scored%}
+	      	<font color="green">
+	      		<form id="form-id" method="post" action="/judge_game/">
+	      			{% csrf_token %}
+	      		    <li>
+	      		        <input type="hidden" value="{{ game.id }}" name="game_name">
+	      		        <input type="submit" value="{{game.name}}" />
+	      		        <!-- <a href="judge_game" onclick="document.getElementById('form-id').submit();"> {{game}} </a> -->
+	      		    </li>
+	      		</form>
+	      {%else%}
+	      	<font>
+	      		<form id="form-id" method="post" action="/judge_game/">
+	      			{% csrf_token %}
+	      		    <li>
+	      		        <input type="hidden" value="{{ game.id }}" name="game_name">
+	      		        <input type="submit" value="{{game.name}}" />
+	      		        <!-- <a href="judge_game" onclick="document.getElementById('form-id').submit();"> {{game}} </a> -->
+	      		    </li>
+	      		</form>
+	      {% endif %}
+	      </font>
+	  </h3>
+  {% endfor %}
+  <hr />
+
+{% endblock %}
+
+
+<form id="form-id" method="post">
+    <li>
+        <input type="hidden" value="{{ game }}" name=game.name>
+        <a href="/judge_game" onclick="document.getElementById('form-id').submit();"> {{game}} </a>
+    </li>
+</form>
