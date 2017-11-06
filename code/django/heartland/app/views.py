@@ -57,7 +57,7 @@ def judging(request):
 
 def judge_game(request):
 	if request.method == 'POST':
-		print(request.POST)
+		#print(request.POST)
 		game_id = request.POST['game_name']
 		game = Game.objects.get(pk=game_id)
 		metrics = list(Metric.objects.all().filter(category = game.category))
@@ -85,18 +85,18 @@ def store_score(request):
 		judge_id = request.POST['judge']
 		game_id = request.POST['game']
 
-		print("Game ID: " + game_id)
+		#print("Game ID: " + game_id)
 		game = Game.objects.get(pk=game_id)
-		print("Game Name: " + game.name)
+		#print("Game Name: " + game.name)
 
-		print("Judge ID: " + judge_id)
+		#print("Judge ID: " + judge_id)
 		judge = User.objects.get(pk=judge_id)
-		print("Judge Name: " + judge.username)
+		#print("Judge Name: " + judge.username)
 
 		for idx,metric_id in enumerate(metrics):
-			print("Metric_id: " + metric_id)
+			#print("Metric_id: " + metric_id)
 			metric = Metric.objects.get(pk=metric_id)
-			print("Metric: " + metric.name)
+			#print("Metric: " + metric.name)
 			score = Score()
 			score.game = game
 			score.judge = judge
