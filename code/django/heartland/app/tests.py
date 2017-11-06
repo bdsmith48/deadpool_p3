@@ -28,3 +28,4 @@ class GameTestCase(TestCase):
 		self.assertEqual(game, Game.objects.get(name="test_game2"))
 		#This shows we have successfully stored the game in the database and can fetch it
 
+#More tests go below here
