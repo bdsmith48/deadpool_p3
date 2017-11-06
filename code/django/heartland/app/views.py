@@ -14,18 +14,18 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def login_success(request):
-	if request.user.groups.filter(name="Registrar").exists():
+    if request.user.groups.filter(name="Registrar").exists():
         # user is an admin
         return redirect("registrar")
     elif request.user.is_superuser:
     	return redirect('/admin/')
     else:
-    	return redirect("judging")
+        return redirect("judging")
 
-    	def register_success(request):
-    		return TemplateResponse(request, 'register_success.html')
+def register_success(request):
+	return TemplateResponse(request, 'register_success.html')
 
-    		def registrar(request):
+def registrar(request):
 	# if this is a POST request we need to process the form data
 	if request.method == 'POST':
 	    # create a form instance and populate it with data from the request:
@@ -43,20 +43,20 @@ def login_success(request):
 	        return HttpResponseRedirect('/register_success/')
 
 	# if a GET (or any other method) we'll create a blank form
-else:
-	form = GameForm()
+	else:
+	    form = GameForm()
 
 	return render(request, 'registrar.html', {'form': form})
 
-	def judging(request):
-		scoredgames = []
-		for score in Score.objects.all().filter(judge = request.user):
-			scoredgames.append(score.game.id)
-			return TemplateResponse(request, 'judging.html', {'games_list': Game.objects.all(), 'games_scored': scoredgames})
+def judging(request):
+    scoredgames = []
+    for score in Score.objects.all().filter(judge = request.user):
+        scoredgames.append(score.game.id)
+    return TemplateResponse(request, 'judging.html', {'games_list': Game.objects.all(), 'games_scored': scoredgames})
 
 
-			def judge_game(request):
-				if request.method == 'POST':
+def judge_game(request):
+	if request.method == 'POST':
 		#print(request.POST)
 		game_id = request.POST['game_name']
 		game = Game.objects.get(pk=game_id)
@@ -70,20 +70,20 @@ else:
 			if score:
 				if score.first().metric == metric:
 					form = ScoreForm({'game' : game, 'metric' : metric, 'judge' : request.user, 'value': score.first().value})
-					forms.append(form)
+			forms.append(form)
 			#print(form)
 
-			return TemplateResponse(request, 'judge_game.html', {'game': game, 'metrics': metrics, 'judge': request.user, 'scores': scores, 'forms': forms})
+		return TemplateResponse(request, 'judge_game.html', {'game': game, 'metrics': metrics, 'judge': request.user, 'scores': scores, 'forms': forms})
 
-		else:
-			return HttpResponse("Please use a post request instead of: " + request.method)
+	else:
+		return HttpResponse("Please use a post request instead of: " + request.method)
 
-			def store_score(request):
-				if request.method == 'POST':
-					metrics = request.POST.getlist('metric')
-					values = request.POST.getlist('value')
-					judge_id = request.POST['judge']
-					game_id = request.POST['game']
+def store_score(request):
+	if request.method == 'POST':
+		metrics = request.POST.getlist('metric')
+		values = request.POST.getlist('value')
+		judge_id = request.POST['judge']
+		game_id = request.POST['game']
 
 		#print("Game ID: " + game_id)
 		game = Game.objects.get(pk=game_id)
@@ -105,7 +105,7 @@ else:
 			Score.objects.filter(judge=judge, game=game, metric=metric).delete()
 			score.save()
 
-			return TemplateResponse(request, 'store_score.html', {'game': game})
+		return TemplateResponse(request, 'store_score.html', {'game': game})
 
-		else:
-			return HttpResponse("Please use a post request")
+	else:
+		return HttpResponse("Please use a post request")

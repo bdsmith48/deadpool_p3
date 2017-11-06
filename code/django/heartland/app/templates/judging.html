@@ -23,17 +23,17 @@
 				<font color="green">
 					<form id="form-id" method="post" action="/judge_game/">
 						{% csrf_token %}
-						<input type="hidden" value="{{ game.id }}" name="game_name">
-						<input type="submit" value="{{game.name}}" />
-						<!-- <a href="judge_game" onclick="document.getElementById('form-id').submit();"> {{game}} </a> -->
+							<input type="hidden" value="{{ game.id }}" name="game_name">
+							<input type="submit" value="{{game.name}}" />
+							<!-- <a href="judge_game" onclick="document.getElementById('form-id').submit();"> {{game}} </a> -->
 					</form>
 					{%else%}
 					<font>
 						<form id="form-id" method="post" action="/judge_game/">
 							{% csrf_token %}
-							<input type="hidden" value="{{ game.id }}" name="game_name">
-							<input type="submit" value="{{game.name}}" />
-							<!-- <a href="judge_game" onclick="document.getElementById('form-id').submit();"> {{game}} </a> -->
+								<input type="hidden" value="{{ game.id }}" name="game_name">
+								<input type="submit" value="{{game.name}}" />
+								<!-- <a href="judge_game" onclick="document.getElementById('form-id').submit();"> {{game}} </a> -->
 						</form>
 						{% endif %}
 					</font>
