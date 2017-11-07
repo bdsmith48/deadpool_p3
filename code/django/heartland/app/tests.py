@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.contrib.auth.models import User
 from django.test import TestCase
 from app.models import *
 
@@ -69,7 +69,20 @@ class JudgingTestCase(TestCase):
 		self.assertEqual(judge_1,my_score.judge)
 		self.assertEqual(value_1,my_score.value)
 			
+class LogInTest(TestCase):
+    #Cheng zhou
+    #This tests login
+    #Tests if putting valid account number and password, it will be logined in successfully
+    def setUp(self):
+        self.credentials = {'username': 'zhchppkdch','password': 'zc123456'}
+        User.objects.create_user(**self.credentials)
 
+    def test_login(self):
+        # send login data
+        response = self.client.post('', self.credentials, follow=True)
+        # This shows we have successfully login and status will match 200
+        self.assertEqual(response.status_code, 200)
+	
 
 
 #More tests go below here
