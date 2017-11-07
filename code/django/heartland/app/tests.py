@@ -46,29 +46,29 @@ class GameDeletion(TestCase):
 		Game.objects.get(id=game.id).delete()
 		self.assertTrue(not Game.objects.filter(id=game.id).exists())
 	
-	class JudgingTestCase(TestCase):
+class JudgingTestCase(TestCase):
     #AbdulAziz AlMahfoudh
 	#Testing Judging
 	#Test whether voting and related information submitted by the judge are consistent
-		def setUp(self):
-			value_1=3
-			Category.objects.create(name="random_category")
-			Game.objects.create(name="random_game",team="random_team",category=Category.objects.get(name="random_category"))
-			Metric.objects.create(name="random_metric",category=Category.objects.get(name="random_category"))
-			User.objects.create_user("random_user","abc@abc.com","123456")
-		def test_game_judging(self):
-			value_1=3
-			game_1=Game.objects.get(name="random_game")
-			metric_1=Metric.objects.get(name="random_metric")
-			judge_1=User.objects.get(username="random_user")
-			Score.objects.create(game=game_1,metric=metric_1,judge=judge_1,value=value_1)
-			my_score=Score.objects.get(game=game_1,metric=metric_1,judge=judge_1,value=value_1)
+	def setUp(self):
+		value_1=3
+		Category.objects.create(name="random_category")
+		Game.objects.create(name="random_game",team="random_team",category=Category.objects.get(name="random_category"))
+		Metric.objects.create(name="random_metric",category=Category.objects.get(name="random_category"))
+		User.objects.create_user("random_user","abc@abc.com","123456")
+	def test_game_judging(self):
+		value_1=3
+		game_1=Game.objects.get(name="random_game")
+		metric_1=Metric.objects.get(name="random_metric")
+		judge_1=User.objects.get(username="random_user")
+		Score.objects.create(game=game_1,metric=metric_1,judge=judge_1,value=value_1)
+		my_score=Score.objects.get(game=game_1,metric=metric_1,judge=judge_1,value=value_1)
 
-			self.assertEqual(game_1,my_score.game)
-			self.assertEqual(metric_1,my_score.metric)
-			self.assertEqual(judge_1,my_score.judge)
-			self.assertEqual(value_1,my_score.value)
-				
+		self.assertEqual(game_1,my_score.game)
+		self.assertEqual(metric_1,my_score.metric)
+		self.assertEqual(judge_1,my_score.judge)
+		self.assertEqual(value_1,my_score.value)
+			
 
 
 
