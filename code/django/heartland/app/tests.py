@@ -28,7 +28,6 @@ class GameTestCase(TestCase):
 		self.assertEqual(game, Game.objects.get(name="test_game2"))
 		#This shows we have successfully stored the game in the database and can fetch it
 
-#More tests go below here
 
 class GameDeletion(TestCase):
 	#Michael Sun
@@ -82,7 +81,22 @@ class LogInTest(TestCase):
         	response = self.client.post('', self.credentials, follow=True)
         	# This shows we have successfully login and status will match 200
         	self.assertEqual(response.status_code, 200)
-	
+
+		
+class AddJudge(TestCase):
+    #Wenlong Gu (Arvin)
+    #Test Add judges
+    #Test if we can add another judger into the database
+    	def setUp(self):
+        	value_a=4
+        	Category.objects.create(name="puppy")
+        	Game.objects.create(name="gameName",team="random_team",category=Category.objects.get(name="puppy"))
+        	Metric.objects.create(name="random_metric",category=Category.objects.get(name="puppy"))
+        	User.objects.create_user("random_user","abc@abc.com","123456")
+   
+    	#create a new judge into the database
+    	def test_add_judge(self):
+        	judge_2=User.objects.get(username="random_user")
 
 
 #More tests go below here
