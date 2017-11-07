@@ -29,3 +29,19 @@ class GameTestCase(TestCase):
 		#This shows we have successfully stored the game in the database and can fetch it
 
 #More tests go below here
+
+class GameDeletion(TestCase):
+	#Michael Sun
+	#This tests deletion of a registered team
+	#Tests if entry exists after creation, then no longer exists after deletion 
+	def setUp(self):
+		Category.objects.create(name="category_del")
+		Game.objects.create(name="game_del", team="team_del", category=Category.objects.get(name="category_del"))
+
+	def test_game_delete(self):
+		# assert True
+		game = Game.objects.get(name="game_del")
+		self.assertTrue(game is not None)
+		# assert True
+		Game.objects.get(id=game.id).delete()
+		self.assertTrue(not Game.objects.filter(id=game.id).exists())
