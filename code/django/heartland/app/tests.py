@@ -73,15 +73,15 @@ class LogInTest(TestCase):
     #Cheng zhou
     #This tests login
     #Tests if putting valid account number and password, it will be logined in successfully
-    def setUp(self):
-        self.credentials = {'username': 'zhchppkdch','password': 'zc123456'}
-        User.objects.create_user(**self.credentials)
+    	def setUp(self):
+        	self.credentials = {'username': 'zhchppkdch','password': 'zc123456'}
+        	User.objects.create_user(**self.credentials)
 
-    def test_login(self):
-        # send login data
-        response = self.client.post('', self.credentials, follow=True)
-        # This shows we have successfully login and status will match 200
-        self.assertEqual(response.status_code, 200)
+    	def test_login(self):
+       		# send login data
+        	response = self.client.post('', self.credentials, follow=True)
+        	# This shows we have successfully login and status will match 200
+        	self.assertEqual(response.status_code, 200)
 	
 
 
