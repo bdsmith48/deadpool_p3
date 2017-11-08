@@ -99,4 +99,18 @@ class AddJudge(TestCase):
         	judge_2=User.objects.get(username="random_user")
 
 
+class AddRegistrar(TestCase):
+    #Fabio Valverde
+    #Test Add Registrar
+    #Test the ability to add another register 
+    	def setUp(self):
+        	value_a=3
+        	Game.objects.create(name=“Toby”)
+        	Metric.objects.create(name="random_metric")
+        	User.objects.create_user("random_user","abc@abc.com","123456")
+
+    	#create a new registrar into the database
+    	def test_add_Registrar(self):
+        	registrar_2=User.objects.get(username="random_user")
+
 #More tests go below here
