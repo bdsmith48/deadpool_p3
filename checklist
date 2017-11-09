@@ -2,8 +2,27 @@ Checklist Document
 Deadpool Phase 3
 ------------------
 Functional Database
-Minimal Website
+ - Django's default of SQLite
+Webpage
+ - Basic bootstrap and CSS
+ - Intuitive navigation
 Website connects to database
+ - Use django's model-database scheme
 Basic Admin Functionality
+ - Using django's built-in admin structure
+ - Admin can create judges
+ - Admin can create entries
+ - Admin can create registrar
+ - Admin can delete judges or entries
+ - Admin can edit entries
 Basic Registrar Functionality
+ - Can register teams
 Basic Judging Functionality
+ - Judges score teams
+ - 1 - 10 scale
+ - Judges can go back and change scores
+Testing
+ - Test file can be found in tests.py
+   code\django\heartland\app\tests.py
+ - Testing team registration, deletion,
+   judge registration
